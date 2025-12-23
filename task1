@@ -1,0 +1,52 @@
+import random
+
+def guessing_game():
+    print("\n🎯 Welcome to the Guessing Game!")
+    print("Choose a level:")
+    print("1. Easy   (1-10, 5 attempts)")
+    print("2. Medium (1-50, 7 attempts)")
+    print("3. Hard   (1-100, 10 attempts)")
+
+    level = int(input("\nEnter level (1/2/3): "))
+
+    if level == 1:
+        max_num = 10
+        attempts_allowed = 5
+    elif level == 2:
+        max_num = 50
+        attempts_allowed = 7
+    else:
+        max_num = 100
+        attempts_allowed = 10
+
+    number = random.randint(1, max_num)
+    attempts = 0
+
+    print(f"\nGuess the number between 1 and {max_num}")
+    print(f"You have {attempts_allowed} attempts!\n")
+
+    while attempts < attempts_allowed:
+        guess = int(input("Enter your guess: "))
+        attempts += 1
+
+        if guess < number:
+            print("📉 Too low!")
+        elif guess > number:
+            print("📈 Too high!")
+        else:
+            print(f"\n🎉 Correct! You guessed the number in {attempts} attempts!")
+            return
+
+        print(f"Attempts left: {attempts_allowed - attempts}\n")
+
+    print(f"\n❌ Out of attempts! The correct number was: {number}")
+
+def play():
+    while True:
+        guessing_game()
+        choice = input("\nDo you want to play again? (yes/no): ").lower()
+        if choice != "yes":
+            print("\n👋 Thanks for playing! Goodbye.")
+            break
+
+play()
